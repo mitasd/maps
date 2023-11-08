@@ -93,16 +93,33 @@ view.ui.add(compass, "top-left");
         view: view
       });
       view.ui.add(scalebar, "bottom-left");
+
+
       const legend = new Legend ({
-        view: view
+        view: view,
+        container: "legendDiv"
       });
       view.ui.add(legend, "top-right");
+      legend.container.style.display = "none";
+
+      // Button click event handler to toggle legend visibility
+      document.getElementById("toggleLegend").addEventListener("click", function() {
+        if (legend.container.style.display === "none") {
+          legend.container.style.display = "block";
+        } else {
+          legend.container.style.display = "none";
+        }
+      });
+
+
       view.ui.add(search, "bottom-left");
       });
     </script>
   </head>
   <body>
     <div id="viewDiv"></div>
+    <div><button id="toggleLegend">LEGENDA</button></div>
+
     <div id="basemapStyles" class="esri-widget">
       <calcite-label>Basemap style</calcite-label>
       <calcite-combobox id="styleCombobox" selection-mode="single" clear-disabled>
